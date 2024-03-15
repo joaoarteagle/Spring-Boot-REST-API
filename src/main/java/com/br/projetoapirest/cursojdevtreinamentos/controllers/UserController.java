@@ -13,7 +13,7 @@ import java.security.PublicKey;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+
 public class UserController {
 
     @Autowired
@@ -21,10 +21,9 @@ public class UserController {
 
 //===================================================================================================
 
-    @PostMapping
+    @PostMapping(value = "post")
+    @ResponseBody
     public ResponseEntity<User> post(@RequestBody User user){
-
-
 
         return new ResponseEntity<User>(userRepository.save(user), HttpStatus.CREATED);
     }
@@ -59,7 +58,7 @@ public class UserController {
 //===================================================================================================
     @GetMapping(value = "getByName")
     @ResponseBody
-    public ResponseEntity<List<User>> getByName(@RequestParam(name = "name") String name){
+    public ResponseEntity<List<User>> getByName( @RequestParam(name = "name") String name){
         List<User> user = userRepository.buscaPorNome(name.trim().toUpperCase());
 
         return new ResponseEntity<List<User>>(user, HttpStatus.OK);
@@ -83,6 +82,7 @@ public class UserController {
         User user1 = userRepository.findById(id).get();
         user1.setName(user.getName());
         user1.setAge(user.getAge());
+        user1.setFone(user.getFone());
 
 
         return new ResponseEntity<User>(userRepository.saveAndFlush(user1),HttpStatus.OK);

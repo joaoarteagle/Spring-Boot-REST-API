@@ -20,8 +20,9 @@ public class User {
 
     private String name;
 
+    private String fone;
+
     private int age;
 
-    private String telefone;
 
 }
