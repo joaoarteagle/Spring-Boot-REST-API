@@ -64,9 +64,11 @@ public class UserController {
         return new ResponseEntity<List<User>>(user, HttpStatus.OK);
     }
 
+
+
 //===================================================================================================
 
-    @DeleteMapping
+    @DeleteMapping(value = "delete")
     public ResponseEntity<String> delete(@RequestParam Long id){
 
         userRepository.deleteById(id);
