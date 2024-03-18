@@ -77,6 +77,8 @@
 
 
 <!--====================================================JAVA SCRIPT======================================-->
+
+
 <script type="text/javascript">
     let table = document.querySelector("#table tbody");
 
@@ -106,6 +108,36 @@
             })
             .catch(error => {
                 alert('Erro ao salvar ' + error.message);   //ENVIA UM ALERT INFORMANDO QUAL O ERRO
+            });
+
+    }
+
+
+    function deletar(id){
+        // URL da API e o ID do recurso a ser deletado
+        const apiUrl = 'delete?id='+ encodeURIComponent(id);
+
+        // Configuração da requisição
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+                // Se necessário, adicione cabeçalhos de autenticação ou outros cabeçalhos necessários
+            }
+        };
+
+        // Faz a requisição DELETE usando fetch
+        fetch(apiUrl, options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Não foi possível deletar o recurso');
+                }
+                // Se a resposta for bem-sucedida, você pode atualizar a interface do usuário ou fazer outras operações
+                console.log('Recurso deletado com sucesso!');
+                pesquisarUser();
+            })
+            .catch(error => {
+                console.error('Erro ao deletar recurso:', error);
             });
 
     }
@@ -152,11 +184,17 @@
                     editar.setAttribute("style", "margin-right:5px;");
                     editar.textContent = "Editar";
 
-                    let excluir = document.createElement('button');
-                    excluir.setAttribute("class", "btn btn-danger");
-                    excluir.textContent = "Excluir";
+                    const linkElement = document.createElement("a");
+                    linkElement.setAttribute("href", "#");
+                    linkElement.setAttribute("onclick", `deletar(${usuario.id})`);
+                    const lixeira = document.createElement("img");
+                    lixeira.setAttribute("src", "./img/lixeira.png");
+                    lixeira.setAttribute("alt", "teste");
+                    linkElement.appendChild(lixeira);
+
+
                     func.appendChild(editar);
-                    func.appendChild(excluir);
+                    func.appendChild(linkElement);
 
                     //ADICIONANDO AS FUNÇÕES A CELULA
                     tr.appendChild(func);
@@ -172,6 +210,10 @@
 
 
     }
+
+
+
+
 
 </script>
 <!--<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
