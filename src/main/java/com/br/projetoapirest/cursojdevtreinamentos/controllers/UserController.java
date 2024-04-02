@@ -9,11 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.PublicKey;
 import java.util.List;
 
 @RestController
-
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
