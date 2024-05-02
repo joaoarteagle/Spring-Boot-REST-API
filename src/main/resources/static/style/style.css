@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    width: 65vw;
+    height: 70vh;
+    border-radius: 5%;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2px solid rgba(255, 255, 255, .2);    
+    
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10vh;
+    background-image: url("../img/paisagem.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.dataContactContainer{
+    width: 35vw;
+}
+h1, h3{
+    color: azure;
+}
+
+.text img{
+    filter: invert(100);
+    width: 40px;
+}
+
+@media (max-width: 575px){
+    body{
+        padding: 0;
+    }
+    .container{
+        width: auto;
+    }
+    .dataContactContainer{
+        width: 90vw;
+    }
+}
+
+@media (min-width: 1024px){
+    .container{
+        width: 45vw;
+    }
+}

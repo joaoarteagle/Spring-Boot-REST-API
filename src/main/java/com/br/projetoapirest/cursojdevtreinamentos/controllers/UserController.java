@@ -47,7 +47,7 @@ public class UserController {
 
 //===================================================================================================
 
-    @GetMapping(value = "getByID")
+    @GetMapping(value = "/getByID")
     @ResponseBody
     public ResponseEntity<User> getByID(@RequestParam(name = "iduser") Long iduser){
       User user = userRepository.findById(iduser).get();
@@ -55,7 +55,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 //===================================================================================================
-    @GetMapping(value = "getByName")
+    @GetMapping(value = "/getByName")
     @ResponseBody
     public ResponseEntity<List<User>> getByName( @RequestParam(name = "name") String name){
         List<User> user = userRepository.buscaPorNome(name.trim().toUpperCase());
@@ -76,7 +76,7 @@ public class UserController {
     }
 //===================================================================================================
 
-    @PutMapping
+    @PutMapping(value = "/update")
     public ResponseEntity<User> update(@RequestParam Long id, @RequestBody User user){
 
 
